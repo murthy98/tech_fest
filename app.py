@@ -69,8 +69,12 @@ def Resonance():
 def register():
     return render_template("register.html")
 
-
-    
+@app.route('/kreeda/')
+def kreeda():
+    return render_template("kreeda.html")
+@app.route('/contact/')
+def contact():
+    return render_template("contact.html")
 
 
 @app.route('/registration/', methods=["GET","POST"])

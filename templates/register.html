@@ -2,6 +2,8 @@
 {% block body %}
 <br>
 <br>
+<h3 align='center'>Registration For<strong> RESONANCE-2k19</strong></h3><br>
+<br>
 <form style="margin-left:40px" method="POST" action="{{ url_for('registration') }}">
         <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -20,31 +22,32 @@
                   <div class="col-sm-08">
                     <input type="email" class="form-control" name="email" placeholder="Email" required>
                   </div>
+                  
                 </div>
                 <div class="form-group row" required>
                   <label for="Email" class="col-sm-2 col-form-label">Events</label>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="events" id="gridRadios1" value="Paper Presentation" >&nbsp;&nbsp;&nbsp;
                 <label class="form-check-label" for="gridRadios1">
-                  Paper Presentation
+                  Paper Presentation&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 </label>
-              </div>
-              <div class="form-check">
+              
                 <input class="form-check-input" type="radio" name="events" id="gridRadios2" value="Poster Presentation">&nbsp;&nbsp;&nbsp;
                 <label class="form-check-label" for="gridRadios2">
                   Poster Presentation
                 </label>
               </div>
-              <div class="form-check ">
-                <input class="form-check-input" type="radio" name="events" id="gridRadios3" value="Innovative Thought">&nbsp;&nbsp;&nbsp;
-                <label class="form-check-label" for="gridRadios3">
-                  Innovative Thought
-                </label>
-              </div>
+              
         
           </div>
           
-          <div required>
+          <div class="form-group row">
+              <label for="name" class="col-sm-2 col-form-label">Topic</label>
+              <div class="col-sm-08">
+                <input type="text" class="form-control" name="topic" placeholder="Topic" required>
+              </div>
+            </div>
+          
             <label for="branch" class="col-sm-2 col-form-label">Branch</label>
             <select name="branch" required>
                 <option value="volvo">Select here</option>
@@ -54,9 +57,9 @@
               <option value="mechanical">Mechanical</option>
               <option value="civil">Civil</option>
             </select>
-          </div>
-          
           <br>
+          <br>
+          
 
         <div class="form-group row">
           <div class="col-sm-10">
