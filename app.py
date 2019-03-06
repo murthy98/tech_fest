@@ -53,7 +53,7 @@ def send_mail(email):
 	try:
         
 		msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
-		msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators .\n\t\tRegards\n\t\tBVC ENGG COLLEGE"
+		msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails\nCSE:resonance2k19.cse@bvcgroup.in\nECE:resonance2k19.ece@bvcgroup.in \nEEE:resonance2k19.eee@bvcgroup.in\nCE:resonance2k19.civil@bvcgroup.in\nME:resonance2k19.mech@bvcgroup.in\ndepending on your stream.\n\t\tRegards\n\tBVC ENGG COLLEGE"
                                        
 		mail.send(msg)
 		return 'Mail sent!'
@@ -142,12 +142,8 @@ def login():
     except Exception as e:
 
         return render_template("admin.html", error = e)
-@app.route("/yuvagala/")
-def yuvagala():
-    return render_template("yuvagala.html")
-@app.route("/yuvregister/")
-def yuvregister():
-    return render_template("yuvregister.html")
+
+
 if __name__ == "__main__":
     app.secret_key="bvcfest2k19"
     
