@@ -1,0 +1,19 @@
+{% extends "header.html" %}
+{% block body %}
+
+<br>
+<form method="POST">
+<table border="5" cellpadding="20" cellspacing="10">
+        {% for row in data %}
+        
+            <tr>
+            {% for d in row %}
+              <td>{{ d  }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            {% endfor %}
+            <td><br><br></td>
+            
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}

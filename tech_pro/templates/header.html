@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+	<meta charset="utf-8">
+    <link rel="icon" type="image/ico" href="" />
+
+	<title>Resonance</title>
+	<link rel="icon" type="img/png" href="{{ url_for('static', filename='bvcicon.png') }}" />
+
+    <link href="{{ url_for('static', filename='css/bootstrap-dropdownhover.min.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="http://bvcec.org/wp-content/uploads/2015/05/bvcicon.png" />	
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="shortcut icon" href="http://bvcec.org/wp-content/uploads/2015/05/bvcicon.png" />	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<div>
+		<br>
+	</div>
+	<div >
+		<h3 align='center' , ><strong>BVC ENGINEERING COLLEGE</strong></h3>
+		<h6 align='center'><strong>AUTONOMOUS</strong></h6>
+		<h6 align='center'>Approved by AICTE, Permanently Affiliated to JNTU Kakinada, Accredited by NAAC with 'A' Grade</h6>
+		<a href="/"><img style="max-width:100px; margin-top: -130px;" src="{{ url_for('static', filename='logo1.png') }}"></a>
+		<a href="/admin"><img style="max-width:100px; margin-top: -100px;margin-right: 30px" align='right' src="{{ url_for('static', filename='logo2.png') }} " ></a>
+
+	</div>
+	<nav class="navbar navbar-expand navbar-primary bg-dark" >
+			<a class="navbar-brand" href="#" style="margin-left:300px"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			  <ul class="navbar-nav">
+				<li class="nav-item active">
+				  <a class="nav-link" href="/">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/resonance">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspResonance&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspKreeda&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspContact&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+					  </li>
+			  </ul>
+			</div>
+		  </nav>
+<body >
+	
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<!------ Include the above in your HEAD tag ---------->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+  <div class="container" style="min-height:100% ;width:80%">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					{{message}}
+					</div>
+				{% endfor %}
+				{% endif %}
+			{% endwith %}
+			
+			{% block body %}{% endblock %}
+			<br>
+			<br>
+			</div>
+			<div>
+		<div><h3 style="margin-left: 50px">Follow Us On</h3>
+			<marquee>
+		</div>
+		<div>
+
+		<span style="display:inline-block; width: 200px;">
+
+		<img src="{{ url_for('static', filename='fb.png') }}" alt="fbicon" style="max-width:50px" href="#">	</span>
+		<span style="display:inline-block; width: 200px;">	<img src="{{ url_for('static', filename='twitter.jpeg') }}"  style="max-width:60px"alt="twticon" href="#">	</span>
+		<span style="display:inline-block; width: 200px;"><img src="{{ url_for('static', filename='mail1.png') }}"  style="max-width:50px"alt="mailicon" href="#">	</span>
+
+	</marquee>
+	<br><br>
+		</div>
+</div>
+</body>
+</html>
+
