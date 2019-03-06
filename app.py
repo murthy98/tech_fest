@@ -16,8 +16,8 @@ app.config.update(
 	MAIL_SERVER='smtp.googlemail.com',
 	MAIL_PORT=465,
 	MAIL_USE_SSL=True,
-	MAIL_USERNAME = 'narayanamurthy.gidugu@gmail.com',
-	MAIL_PASSWORD = 'Sairf529*'
+	MAIL_USERNAME = 'resonance2k19.cse@bvcgroup.in',
+	MAIL_PASSWORD = '12345678'
 	)
 app.config['SECRET_KEY'] = 'redsfsfsfsfis'
 mail = Mail(app)
