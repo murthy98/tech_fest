@@ -16,8 +16,8 @@ app.config.update(
 	MAIL_SERVER='smtp.googlemail.com',
 	MAIL_PORT=465,
 	MAIL_USE_SSL=True,
-	MAIL_USERNAME = 'resonance2k19.cse@bvcgroup.in',
-	MAIL_PASSWORD = '12345678'
+	MAIL_USERNAME = 'narayanamurthy.gidugu@gmail.com',
+	MAIL_PASSWORD = 'zphooxccrztyvtbk'
 	)
 app.config['SECRET_KEY'] = 'redsfsfsfsfis'
 mail = Mail(app)
@@ -53,7 +53,7 @@ def send_mail(email):
 	try:
         
 		msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
-		msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails\nCSE:resonance2k19.cse@bvcgroup.in\nECE:resonance2k19.ece@bvcgroup.in \nEEE:resonance2k19.eee@bvcgroup.in\nCE:resonance2k19.civil@bvcgroup.in\nME:resonance2k19.mech@bvcgroup.in\ndepending on your stream.\n\t\tRegards\n\tBVC ENGG COLLEGE"
+		msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n\n\n\t\tRegards\n\tBVC ENGG COLLEGE"
                                        
 		mail.send(msg)
 		return 'Mail sent!'
