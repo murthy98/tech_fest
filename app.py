@@ -87,33 +87,33 @@ def contact():
 def registration():
     try:
         if request.method == "POST" :
-            
-            name  = request.form['name']
-            clgname = request.form['clgname']
-            event = request.form['events']
-            email=request.form['email']
-            branch = request.form['branch']
-            x=mailverify(email)
-            
-            
-            if x == 1:
-                c, conn = connection()
-                c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
-                conn.commit()                    
+            if 'submit_button' in request.form:
+                name  = request.form['name']
+                clgname = request.form['clgname']
+                event = request.form['events']
+                email=request.form['email']
+                branch = request.form['branch']
+                x=mailverify(email)
                 
                 
-                
-                z=send_mail(str(email))
-                
-                c.close()
-                conn.close()
-                gc.collect()
-                flash("Successfully Registered !!")
-                return render_template("resonance.html")
-            else:
-                flash("Invalid email!!")
-                return render_template('register.html')
-        return render_template("register.html")
+                if x == 1:
+                    c, conn = connection()
+                    c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
+                    conn.commit()                    
+                    
+                    
+                    
+                    z=send_mail(str(email))
+                    
+                    c.close()
+                    conn.close()
+                    gc.collect()
+                    flash("Successfully Registered !!")
+                    return render_template("resonance.html")
+                else:
+                    flash("Invalid email!!")
+                    return render_template('register.html')
+            return render_template("register.html")
 
     except Exception as e:
         flash(e)
