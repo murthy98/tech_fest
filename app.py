@@ -98,15 +98,17 @@ def registration():
             if 'submit_button' in request.form:
                 name  = request.form['name']
                 clgname = request.form['clgname']
-                event = request.form['events']
                 email=request.form['email']
                 branch = request.form['branch']
+                paper_title=request.form['papertitle']
                 x=mailverify(email)
                 
                 
                 if x == 1:
                     c, conn = connection()
-                    c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
+                    c.execute("SELECT MAX(id) FROM festusers")
+                    id=c.fetchone()
+                    c.execute("INSERT INTO festusers VALUES (%s,%s, %s,%s, %s, %s)",(id[0]+1,name,clgname,email,paper_title,branch))
                     conn.commit()                    
                     
                     
@@ -116,7 +118,7 @@ def registration():
                     c.close()
                     conn.close()
                     gc.collect()
-                    flash("Successfully Registered !!")
+                    flash("Successfully Registered !! Please check your email for further communication!!")
                     return render_template("resonance.html")
                 else:
                     flash("Invalid email!!")
