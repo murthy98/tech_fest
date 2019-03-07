@@ -48,9 +48,13 @@
 			  </ul>
 			</div>
 			</nav>
+
 			</header>
 <body >
-	
+ {% if session.logged_in %}
+
+        <button type="button" class="btn btn-primary" style="margin-left:1000px;"><a href="/report" style="color:white">Report</a></button>
+{%endif%}	
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
