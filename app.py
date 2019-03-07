@@ -149,7 +149,7 @@ def login():
                     conn.commit()
                     conn.close()
                     gc.collect()
-                    return render_template("participats.html",data = tab_data)
+                    return render_template("home.html",data = tab_data)
         return render_template("admin.html")
     except Exception as e:
 

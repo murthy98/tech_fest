@@ -4,8 +4,32 @@
 	
 	<br>
 	
-	
+	<br>
+<br>
 
+{%if session.logged_in%}
+
+<form action="{{ url_for('login') }}" method="POST">
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-4">
+            <input type="text"class="form-control" name="adminmail" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-4">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            
+        </div>
+        </div>
+        
+        <br>
+            <br>
+            <button type="submit" class="btn btn-primary" name="adminsubmit">Submit</button>
+  
+      </form>
+{%else%}
 <img style="max-width:900px;max-height: 300px;margin-left: 150px"  src="{{ url_for('static', filename='bvc1.jpg') }}">
 <br>
 <br>
@@ -20,5 +44,6 @@
 <br>
     <h5><strong>Mission </strong></h5>
 <p>To create an environment that shall foster the growth of intellectually capable, innovative professionals who can contribute to the to the growth of technology in partnership with industry and develop and harness it for the welfare of the nation and mankind.</p> 
-<br>    
+<br>  
+{%endif%}  
 {% endblock %}
