@@ -19,8 +19,12 @@
 		<h6 align='center'><strong>AUTONOMOUS</strong></h6>
 		<h6 align='center'>Approved by AICTE, Permanently Affiliated to JNTU Kakinada, Accredited by NAAC with 'A' Grade</h6>
 		<a href="/"><img style="max-width:100px; margin-top: -130px;" src="{{ url_for('static', filename='logo1.png') }}"></a>
-		<a href="/admin"><img style="max-width:100px; margin-top: -100px;margin-right: 30px" align='right' src="{{ url_for('static', filename='logo2.png') }} " ></a>
+		{% if session.logged_in %}
 
+		<button type="button" class="btn btn-success" style="margin-left:900px;margin-top:-200px"><a href="/logout" style="color:white">Logout</a></button>
+		{% else %}   
+		<button type="button" class="btn btn-success" style="margin-left:900px;margin-top:-200px"><a href="/login" style="color:white">Admin Login</a></button>
+		{% endif %}
 	</div>
 	<nav class="navbar navbar-expand navbar-primary bg-dark" >
 			<a class="navbar-brand" href="#" style="margin-left:300px"></a>
@@ -70,22 +74,27 @@
 			<br>
 			<br>
 			</div>
-			<div>
-		<div ><h3>Follow Us On</h3>
-			<marquee>
-			</div>
-		<div>
-
-		<span style="display:inline-block; width: 200px;">
-
-		<img src="{{ url_for('static', filename='fb.png') }}" alt="fbicon" style="max-width:50px" href="#">	</span>
-		<span style="display:inline-block; width: 200px;">	<img src="{{ url_for('static', filename='twitter.jpeg') }}"  style="max-width:60px"alt="twticon" href="#">	</span>
-		<span style="display:inline-block; width: 200px;"><img src="{{ url_for('static', filename='mail1.png') }}"  style="max-width:50px"alt="mailicon" href="#">	</span>
-
-	</marquee>
-	<br><br>
-		</div>
-</div>
+			
 </body>
+<footer class="section footer-classic context-light bg-image" style="background: #2d3246;color: white">
+  <br>  
+  <div class="container">
+      <div class="row row-30">
+        <div class="col-md-4 col-xl-5">
+          <div class="pr-xl-4"><a class="brand" href="#"></a>
+           
+            <p class="rights"><span>©  </span><span class="copyright-year">2019</span><span> </span><span>BVC Group</span><span>. </span><span>All Rights Reserved.</span></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Developed By</h5>
+          <p>G Murthy ,  R Uday<br>III-B.Tech CSE (2016-20)</p>
+         
+        </div>
+        
+      </div>
+    </div>
+    
+  </footer>
 </html>
 

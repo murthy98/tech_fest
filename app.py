@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, url_for, redirect
+from flask import Flask, render_template, flash, request, url_for, redirect,session
 import gc
 from flask_mail import Mail, Message
 from passlib.hash import sha256_crypt
@@ -8,6 +8,8 @@ import smtplib
 import re
 import dns.resolver
 from dbconnection import connection
+from flask_socketio import SocketIO, emit
+
 app = Flask(__name__)
 
 app.config.update(
@@ -21,6 +23,10 @@ app.config.update(
 	)
 app.config['SECRET_KEY'] = 'redsfsfsfsfis'
 mail = Mail(app)
+socketio = SocketIO(app)
+@socketio.on('disconnect')
+def disconnect_user():
+    session.clear()
 def mailverify(email):
    
     try:
@@ -116,6 +122,10 @@ def registration():
 @app.route("/admin/")
 def admin():
     return render_template("admin.html")
+@app.route("/logout/")
+def logout():
+    session.clear()
+    return render_template("admin.html")
 @app.route('/login/', methods=["GET","POST"])
 def login():
     c,conn = connection()
@@ -125,16 +135,18 @@ def login():
         if request.method == "POST" :
 
             if 'adminsubmit' in request.form:
-                data = c.execute("SELECT * FROM admin WHERE email = ('%s')" %request.form["adminmail"])
+                c.execute("SELECT * FROM admin WHERE email = ('%s')" %request.form["adminmail"])
                
                 data = c.fetchone()
               
                 if sha256_crypt.verify(request.form['password'],data[1] ):
-                    branch = request.form['branch']
-
-                    tab_data=c.execute("SELECT * FROM festusers WHERE branch = ('%s')" %branch)
+                    
+                    session['logged_in'] = True
+                    session['username'] = request.form['adminmail']
+                    c.execute("SELECT * FROM festusers WHERE branch = ('%s')" %data[2])
                     tab_data = c.fetchall()
                     c.close()
+                    conn.commit()
                     conn.close()
                     gc.collect()
                     return render_template("participats.html",data = tab_data)
