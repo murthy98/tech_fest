@@ -87,6 +87,7 @@ def contact():
 def registration():
     try:
         if request.method == "POST" :
+<<<<<<< HEAD
             if 'submit_button' in request.form:
                 name  = request.form['name']
                 clgname = request.form['clgname']
@@ -114,6 +115,44 @@ def registration():
                     flash("Invalid email!!")
                     return render_template('register.html')
             return render_template("register.html")
+=======
+            
+            name  = request.form['name']
+            clgname = request.form['clgname']
+            event = request.form['events']
+            email=request.form['email']
+            branch = request.form['branch']
+            x=mailverify(email)
+            
+            
+            if x == 1:
+                c, conn = connection()
+                with conn:
+                    with c:
+                        c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
+                try:
+
+        
+                    msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
+                    msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n\n\n\t\tRegards\n\tBVC ENGG COLLEGE"
+                    with app.open_resource(request.form.file) as fp:
+                        msg.attach(request.form.file.data.filename,"doc/docx",fp.read())
+                                                    
+                    mail.send(msg)
+                    return 'Mail sent!'
+                except Exception as e:
+                    return(str(e)) 
+                
+                c.close()
+                conn.close()
+                gc.collect()
+                flash("Successfully Registered !!")
+                return render_template("resonance.html")
+            else:
+                flash("Invalid email!!")
+                return render_template('register.html')
+        return render_template("register.html")
+>>>>>>> master
 
     except Exception as e:
         flash(e)
