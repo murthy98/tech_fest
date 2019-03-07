@@ -10,7 +10,7 @@
 {%if session.logged_in%}
 
 <br>
-<form method="POST">
+<form action="{{url_for('download')}}" method="GET">
 <table border="5" cellpadding="20" cellspacing="10">
         <tr>
                 <th>Name</th>
@@ -29,7 +29,9 @@
             
             </tr>
         {% endfor %}
-    </table>
+    </table >
+    <br>
+    <button style="margin-left:400px">Download</button>
 </form>
 {%else%}
 <img style="max-width:900px;max-height: 300px;margin-left: 150px"  src="{{ url_for('static', filename='bvc1.jpg') }}">

@@ -6,12 +6,13 @@ from wtforms import Form,  StringField, SelectField, validators
 import socket
 import smtplib
 import re
+import flask_excel as excel
 import dns.resolver
 from dbconnection import connection
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
-
+excel.init_excel(app)
 app.config.update(
 	DEBUG=True,
 	#EMAIL SETTINGS
@@ -67,7 +68,14 @@ def send_mail(email):
 		return(str(e)) 
 @app.route('/')
 def homepage():
+    if 'logged_in' in session:
+        c,conn = connection()
+    
+        c.execute("SELECT * FROM festusers WHERE branch = %s",(session['username'],))
+        tab_data=c.fetchall()
+        return render_template("home.html",data=tab_data)
     return render_template("home.html")
+@app.route('/download')
 @app.route('/resonance/')
 def Resonance():
     return render_template("resonance.html")
@@ -141,21 +149,30 @@ def login():
               
                 if sha256_crypt.verify(request.form['password'],data[1] ):
                     
-                    session['logged_in'] = True
-                    session['username'] = request.form['adminmail']
-                    c.execute("SELECT * FROM festusers WHERE branch = ('%s')" %data[2])
+                    
+                    c.execute("SELECT * FROM festusers WHERE branch = %s",(data[2],))
                     tab_data = c.fetchall()
                     c.close()
+                    session['logged_in'] = True
+                    session['username'] = request.form['adminmail']
                     conn.commit()
                     conn.close()
                     gc.collect()
                     return render_template("home.html",data = tab_data)
-        return render_template("admin.html")
     except Exception as e:
+        flash(e)
+        return render_template("admin.html")
+    return render_template("admin.html")
 
-        return render_template("admin.html", error = e)
-
-
+@app.route("/download/", methods=['GET','POST'])
+def download():
+    c,conn=connection()
+    with conn:
+        with c:
+           
+            c.execute("SELECT * FROM festusers WHERE branch = %s",(session['username'],))
+            tab_data=c.fetchall()
+            return excel.make_response_from_array(tab_data, "csv",file_name="registered_candidates")
 if __name__ == "__main__":
     app.secret_key="bvcfest2k19"
     
