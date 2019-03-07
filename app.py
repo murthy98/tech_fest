@@ -98,12 +98,21 @@ def registration():
             
             if x == 1:
                 c, conn = connection()
-                c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
-                conn.commit()                    
-                
-                
-                
-                z=send_mail(str(email))
+                with conn:
+                    with c:
+                        c.execute("INSERT INTO festusers(name,clg_name,event,branch,email) VALUES (%s, %s, %s, %s,%s)",(name,clgname,event,branch,email))
+                try:
+
+        
+                    msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
+                    msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n\n\n\t\tRegards\n\tBVC ENGG COLLEGE"
+                    with app.open_resource(request.form.file) as fp:
+                        msg.attach(request.form.file.data.filename,"doc/docx",fp.read())
+                                                    
+                    mail.send(msg)
+                    return 'Mail sent!'
+                except Exception as e:
+                    return(str(e)) 
                 
                 c.close()
                 conn.close()
