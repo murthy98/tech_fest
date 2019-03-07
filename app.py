@@ -102,10 +102,10 @@ def registration():
                     conn.commit()                    
                     
                     try:
-        
+                        file=request.form['file']
                         msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
                         msg.body = "Thanks for registering.\n\t\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n\n\n\t\tRegards\n\tBVC ENGG COLLEGE"
-                        msg.attach(request.form.file.data.filename,'doc/docx',request.form.file.data.read())                          
+                        msg.attach(file.data.filename,'doc/docx',file.data.read())                          
                         mail.send(msg)
                         flash('Mail sent!')
                     except Exception as e:
