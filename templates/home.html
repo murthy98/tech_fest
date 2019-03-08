@@ -12,13 +12,7 @@
 <br>
 <form action="{{url_for('download')}}" method="GET">
 <table border="5" cellpadding="20" cellspacing="10">
-        <tr>
-                <th>Name</th>
-                <th>College</th>
-                <th>Email</th>
-                <th>Event</th>
-                <th>Branch</th>
-            </tr>
+        
         {% for row in data %}
         
             <tr>

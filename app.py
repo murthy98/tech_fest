@@ -72,7 +72,9 @@ def homepage():
         c,conn = connection()
     
         c.execute("SELECT * FROM festusers WHERE branch = %s",(session['username'],))
+        colname=[desc[0] for desc in c.description]
         tab_data=c.fetchall()
+        tab_data.insert(0,colname)
         return render_template("home.html",data=tab_data)
     return render_template("home.html")
 @app.route('/download')
@@ -153,7 +155,9 @@ def login():
                     
                     
                     c.execute("SELECT * FROM festusers WHERE branch = %s",(data[2],))
-                    tab_data = c.fetchall()
+                    colname=[desc[0] for desc in c.description]
+                    tab_data=c.fetchall()
+                    tab_data.insert(0,colname)
                     c.close()
                     session['logged_in'] = True
                     session['username'] = request.form['adminmail']
@@ -173,7 +177,9 @@ def download():
         with c:
            
             c.execute("SELECT * FROM festusers WHERE branch = %s",(session['username'],))
+            colname=[desc[0] for desc in c.description]
             tab_data=c.fetchall()
+            tab_data.insert(0,colname)
             return excel.make_response_from_array(tab_data, "csv",file_name="registered_candidates")
 if __name__ == "__main__":
     app.secret_key="bvcfest2k19"
