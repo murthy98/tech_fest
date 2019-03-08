@@ -74,8 +74,9 @@ def homepage():
         c.execute("SELECT * FROM festusers WHERE branch = %s",(session['username'],))
         colname=[desc[0] for desc in c.description]
         tab_data=c.fetchall()
+        l=len(tab_data)
         tab_data.insert(0,colname)
-        return render_template("home.html",data=tab_data)
+        return render_template("home.html",data=tab_data,l=l)
     return render_template("home.html")
 @app.route('/download')
 @app.route('/resonance/')
@@ -157,6 +158,8 @@ def login():
                     c.execute("SELECT * FROM festusers WHERE branch = %s",(data[2],))
                     colname=[desc[0] for desc in c.description]
                     tab_data=c.fetchall()
+                    l=len(tab_data)
+
                     tab_data.insert(0,colname)
                     c.close()
                     session['logged_in'] = True
@@ -164,7 +167,7 @@ def login():
                     conn.commit()
                     conn.close()
                     gc.collect()
-                    return render_template("home.html",data = tab_data)
+                    return render_template("home.html",data = tab_data,l=l)
     except Exception as e:
         flash(e)
         return render_template("admin.html")
