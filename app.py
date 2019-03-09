@@ -83,9 +83,15 @@ def Resonance():
     return render_template("resonance.html")
 @app.route('/register/', methods=["GET","POST"])
 def register():
-	if request.method=="POST":
-		return render_template("register.html")
+    try:
+        if request.method=="POST":
+            return render_template("register.html")
+    except Exception:
+        return render_template("resonance.html")
     return render_template("register.html")
+
+    
+    
 
 @app.route('/kreeda/')
 def kreeda():
