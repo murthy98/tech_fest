@@ -78,7 +78,6 @@ def homepage():
         tab_data.insert(0,colname)
         return render_template("home.html",data=tab_data,l=l)
     return render_template("home.html")
-@app.route('/download')
 @app.route('/resonance/')
 def Resonance():
     return render_template("resonance.html")
