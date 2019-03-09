@@ -1,8 +1,10 @@
 {% extends "header.html" %}
 {% block body %}
 <br>
-<button type="button"  class="btn btn-warning btn-lg" ><a href="/register/" style="color:cornsilk;">Register here</a></button>
-<br>
+<form action="{{url_for('register')}}" method="POST">
+<button type="button"  class="btn btn-warning btn-lg" ><a style="color:cornsilk;">Register here</a></button>
+</form>
+ <br>
 <br>
 
 <h2 align='center'style="font-family:Comic Sans MS;color:brown;border-style:dotted;border-color:blue;border-width: 5px "><strong>RESONANCE-2k19</strong></h2>
