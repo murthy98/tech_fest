@@ -60,8 +60,7 @@ def send_mail(email,id):
 	try:
         
 		msg = Message("RESONANCE-2k19!",sender="narayanamurthy.gidugu@gmail.com",recipients=[str(email)])
-		msg.body = "Thanks for registering.\nYour ID:"+id+"\n\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails  depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n Make sure that your abstract file name should be your id and the abstract must be in IEEE format.\n\n\t\tRegards\n\tBVC ENGG COLLEGE\n\nPlease do not reply tho this mail.If you have any queries mail to your respective department mails mentioned above."
-                                       
+		msg.body = "Thanks for registering.\nYour ID:"+str(id)+"\n\tYour application has been shared with our related co-ordinators.Please forward your abstract to below mails  depending on your stream. \nCSE:   resonance2k19.cse@bvcgroup.in\nECE:   resonance2k19.ece@bvcgroup.in \nEEE:    resonance2k19.eee@bvcgroup.in\nCE:   resonance2k19.civil@bvcgroup.in\nME:   resonance2k19.mech@bvcgroup.in\n Make sure that your abstract file name should be your id and the abstract must be in IEEE format.\n\n\t\tRegards\n\tBVC ENGG COLLEGE\n\nPlease do not reply tho this mail.If you have any queries mail to your respective department mails mentioned above."
 		mail.send(msg)
 		return 'Mail sent!'
 	except Exception as e:
@@ -136,7 +135,6 @@ def registration():
             return render_template("register.html")
 
     except Exception as e:
-        flash(e)
         return render_template("home.html", error = e) 
 		
 @app.route("/admin/")
@@ -176,7 +174,6 @@ def login():
                     gc.collect()
                     return render_template("home.html",data = tab_data,l=l)
     except Exception as e:
-        flash(e)
         return render_template("admin.html")
     return render_template("admin.html")
 @app.errorhandler(404)
