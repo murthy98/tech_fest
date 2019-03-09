@@ -81,7 +81,7 @@ def homepage():
 @app.route('/resonance/')
 def Resonance():
     return render_template("resonance.html")
-@app.route('/register/')
+@app.route('/register/', methods=["GET","POST"])
 def register():
     return render_template("register.html")
 
