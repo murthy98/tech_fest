@@ -179,7 +179,15 @@ def login():
         flash(e)
         return render_template("admin.html")
     return render_template("admin.html")
-
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("error.html")
+@app.errorhandler(405)
+def page_not_found(e):
+    return render_template("error.html")
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("error.html")
 @app.route("/download/", methods=['GET','POST'])
 def download():
     c,conn=connection()
@@ -194,4 +202,4 @@ def download():
 if __name__ == "__main__":
     app.secret_key="bvcfest2k19"
     
-    app.run(debug=True)
+    app.run()
